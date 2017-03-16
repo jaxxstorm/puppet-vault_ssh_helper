@@ -1,0 +1,50 @@
+{
+  "name": "jaxxstorm-vault_ssh_helper",
+  "version": "0.1.0",
+  "author": "jaxxstorm",
+  "summary": "Install and manage vault-ssh-helper",
+  "license": "MIT",
+  "source": "https://github.com/jaxxstorm/puppet-vault_ssh_helper",
+  "project_page": "https://github.com/jaxxstorm/puppet-vault_ssh_helper",
+  "issues_url": "https://github.com/jaxxstorm/puppet-vault_ssh_helper/issues",
+  "tags": [
+    "vault",
+    "security",
+    "ssh"
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "12.04",
+        "14.04"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">=3.3.0 <5.0.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">=3.2.0 <5.0.0"
+    }
+  ]
+}
