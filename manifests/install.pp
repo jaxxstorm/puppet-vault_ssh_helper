@@ -11,6 +11,7 @@ class vault_ssh_helper::install {
     'url': {
       include '::archive'
       file {[
+        $install_prefix,
         $install_path,
         "${install_path}/vault-ssh-helper-${vault_ssh_helper::version}"]:
           ensure => directory,

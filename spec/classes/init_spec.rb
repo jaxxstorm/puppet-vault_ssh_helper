@@ -58,9 +58,10 @@ describe 'vault_ssh_helper' do
 
   context "When installing via URL by default" do
     it { should contain_archive('/opt/vault-ssh-helper/archives/vault-ssh-helper-0.1.3.zip').with(:source => 'https://releases.hashicorp.com/vault-ssh-helper/0.1.3/vault-ssh-helper_0.1.3_linux_amd64.zip') }
+    it { should contain_file('/opt/vault-ssh-helper').with(:ensure => 'directory') }
     it { should contain_file('/opt/vault-ssh-helper/archives').with(:ensure => 'directory') }
     it { should contain_file('/opt/vault-ssh-helper/archives/vault-ssh-helper-0.1.3').with(:ensure => 'directory') }
-    it { should contain_file('/usr/local/bin/vault-ssh-helper')}
+    it { should contain_file('/usr/local/bin/vault-ssh-helper').with(:ensure => 'link', :target => '/opt/vault-ssh-helper/archives/vault-ssh-helper-0.1.3/vault-ssh-helper')}
   end
 
   context "When installing via URL with a special archive_path" do
@@ -70,7 +71,7 @@ describe 'vault_ssh_helper' do
     it { should contain_archive('/usr/share/puppet-archive/vault-ssh-helper-0.1.3.zip').with(:source => 'https://releases.hashicorp.com/vault-ssh-helper/0.1.3/vault-ssh-helper_0.1.3_linux_amd64.zip') }
     it { should contain_file('/usr/share/puppet-archive').with(:ensure => 'directory') }
     it { should contain_file('/usr/share/puppet-archive/vault-ssh-helper-0.1.3').with(:ensure => 'directory') }
-    it { should contain_file('/usr/local/bin/vault-ssh-helper')}
+    it { should contain_file('/usr/local/bin/vault-ssh-helper').with(:ensure => 'link', :target => '/usr/share/puppet-archive/vault-ssh-helper-0.1.3/vault-ssh-helper')}
   end
 
   context "When installing via URL by with a special version" do
@@ -78,7 +79,7 @@ describe 'vault_ssh_helper' do
       :version   => '42',
     }}
     it { should contain_archive('/opt/vault-ssh-helper/archives/vault-ssh-helper-42.zip').with(:source => 'https://releases.hashicorp.com/vault-ssh-helper/42/vault-ssh-helper_42_linux_amd64.zip') }
-    it { should contain_file('/usr/local/bin/vault-ssh-helper') }
+    it { should contain_file('/usr/local/bin/vault-ssh-helper').with(:ensure => 'link', :target => '/opt/vault-ssh-helper/archives/vault-ssh-helper-42/vault-ssh-helper') }
   end
 
   context "When installing via URL by with a custom url" do
@@ -86,7 +87,7 @@ describe 'vault_ssh_helper' do
       :download_url   => 'http://myurl',
     }}
     it { should contain_archive('/opt/vault-ssh-helper/archives/vault-ssh-helper-0.1.3.zip').with(:source => 'http://myurl') }
-    it { should contain_file('/usr/local/bin/vault-ssh-helper')}
+    it { should contain_file('/usr/local/bin/vault-ssh-helper').with(:ensure => 'link', :target => '/opt/vault-ssh-helper/archives/vault-ssh-helper-0.1.3/vault-ssh-helper')}
   end
 
 
